@@ -17,8 +17,6 @@
     "socket.io": "^2.2.0"
   },
   "devDependencies": {
-    "expect": "^24.9.0",
-    "mocha": "^6.2.0",
     "nodemon": "^1.19.1"
   }
 }
