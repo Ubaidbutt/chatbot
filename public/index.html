@@ -5,13 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Chatbot</title>
+    <title>Chatbot</title> 
 </head>
 
 <body>
     <p> Welcome to chat application. </p>
 
+    <ol id = "messages">
+        
+    </ol>
+
+    <form id = "message-form">
+        <input name = 'message' type = 'text' placeholder = 'Message' />
+        <button>Send</button>
+    </form>
+
     <script src = "/socket.io/socket.io.js"> </script>
+    <script src = "./js/libs/jquery-3.4.1.min.js"> </script>
     <script src = "./js/index.js"> </script>
     
 </body>

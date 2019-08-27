@@ -8,7 +8,7 @@ const publicPath = path.join (__dirname, '../public');
 const port = process.env.port || 3000;
 const app = express();
 const server = http.createServer (app);
-const io = socketIO (server);
+const io = socketIO (server); 
 
 
 io.on ('connection', (socket) => {
@@ -21,10 +21,11 @@ io.on ('connection', (socket) => {
         console.log ('User disconnected! ');
     });
 
-    socket.on ('createMsg', (newMsg) => {
+    socket.on ('createMsg', (newMsg, callback) => {
         console.log (`Create msg event: ${JSON.stringify (newMsg)}`);
 
         io.emit ('newMsg', generateMessage (newMsg.from, newMsg.text));
+        callback('This is from the server.');
 
         /*
         socket.broadcast.emit ('newMsg', {
