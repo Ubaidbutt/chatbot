@@ -8,6 +8,6 @@ socket.on ('disconnect', () => {
     console.log (`Disconnect from server. `);
 });
 
-socket.on ('newMsg', (email) => {
-    console.log (`New message: ${JSON.stringify (email)}`);
+socket.on ('newMsg', (msg) => {
+    console.log (`New message: ${JSON.stringify (msg)}`);
 });

@@ -13,6 +13,17 @@ const io = socketIO (server);
 io.on ('connection', (socket) => {
     console.log ('New user connected! ');
 
+    socket.emit ('newMsg', {
+        from: 'Admin',
+        text: 'Welcome to the chat app.'
+    });
+
+    socket.broadcast.emit ('newMsg', {
+        from: 'Admin',
+        text: 'New user Joined! ',
+        createdAt: new Date().getTime()
+    });
+
     socket.on ('disconnect', () => {
         console.log ('User disconnected! ');
     });
@@ -20,11 +31,20 @@ io.on ('connection', (socket) => {
     socket.on ('createMsg', (newMsg) => {
         console.log (`Create msg event: ${JSON.stringify (newMsg)}`);
 
+
         io.emit ('newMsg', {
             from: newMsg.from,
             text: newMsg.text,
             createdAt: new Date().getTime()
         });
+
+        /*
+        socket.broadcast.emit ('newMsg', {
+            from: newMsg.from,
+            text: newMsg.text,
+            createdAt: new Date().getTime()
+        });
+        */
     });
 });
 
