@@ -17,14 +17,14 @@ io.on ('connection', (socket) => {
         console.log ('User disconnected! ');
     });
 
-    socket.emit ('newMsg', {
-        from: 'Ubaid',
-        text: 'Hey, what is going on. ?',
-        createdAt: 123
-    });
+    socket.on ('createMsg', (newMsg) => {
+        console.log (`Create msg event: ${JSON.stringify (newMsg)}`);
 
-    socket.on ('createMsg', (newEmail) => {
-        console.log (`Create msg event: ${JSON.stringify (newEmail)}`);
+        io.emit ('newMsg', {
+            from: newMsg.from,
+            text: newMsg.text,
+            createdAt: new Date().getTime()
+        });
     });
 });
 
