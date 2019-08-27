@@ -16,6 +16,16 @@ io.on ('connection', (socket) => {
     socket.on ('disconnect', () => {
         console.log ('User disconnected! ');
     });
+
+    socket.emit ('newMsg', {
+        from: 'Ubaid',
+        text: 'Hey, what is going on. ?',
+        createdAt: 123
+    });
+
+    socket.on ('createMsg', (newEmail) => {
+        console.log (`Create msg event: ${JSON.stringify (newEmail)}`);
+    });
 });
 
 app.use (express.static (publicPath));
