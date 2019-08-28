@@ -24,7 +24,7 @@ io.on ('connection', (socket) => {
 
         socket.join (params.room);
         users.removeUser(socket.id);
-        const newUser = users.addUser (socket.id, params.name, params.room);
+        users.addUser (socket.id, params.name, params.room);
 
         io.to(params.room).emit ('updateUserList', users.getUserList(params.room));
 
@@ -34,15 +34,22 @@ io.on ('connection', (socket) => {
     })
 
     socket.on ('createMsg', (newMsg, callback) => {
-        console.log (`Create msg event: ${JSON.stringify (newMsg)}`);
 
-        io.emit ('newMsg', generateMessage (newMsg.from, newMsg.text));
+        let user = users.getUser (socket.id);
+
+        if (user && isRealString (newMsg.text)) {
+            io.to(user.room).emit ('newMsg', generateMessage (user.name, newMsg.text));
+        }
         callback();
 
     });
 
     socket.on ('createLocationMessage', (coords) => {
-        io.emit ('newLocationMsg', generateLocationMessage('Admin', coords.latitude, coords.longitude));
+        let user = users.getUser (socket.id);
+
+        if (user) {
+            io.to(user.room).emit ('newLocationMsg', generateLocationMessage(user.name, coords.latitude, coords.longitude));
+        }
     });
 
     socket.on ('disconnect', () => {
