@@ -1,7 +1,11 @@
 # chatroom application
 
-- This is an application that I built following a NodeJS course.
-- The application allow people to join chatrooms and have discussions. I have deployed the application on Heroku and I use it to communicate with my friends when in office. :)
+- This is an application that I built following through a NodeJS course.
+- The application allow different people to join chatrooms and have discussions. I have deployed the application on Heroku and often use it for a chat.
+- There can be few enhancement made into this project:
+1- Smileys for chat
+2- Attachments
+3- New message notification
 
 ## Download this project
 ### Type "npm install" to install all the dependencies
